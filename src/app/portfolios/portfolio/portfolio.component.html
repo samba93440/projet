@@ -1,0 +1,21 @@
+<div>
+  <a routerLink="/portfolio/new" class="btn btn-primary">Creer un nouvel article</a>
+</div>
+<div>
+  <article *ngFor="let portfolio of portfolios">
+      <h2>
+          <a [routerLink]="['/portfolio', portfolio._id]">
+              {{ portfolio.titre }}
+          </a>
+      </h2>
+      <p>
+          {{ portfolio.contenu }}
+      </p>
+      <hr>
+          <button id="sup" class="btn btn-danger" (click) = "onClickDelete(portfolio)" >Supprimer</button>
+           &nbsp;
+          <button id="maj" class="btn btn-warning"  (click)="onClickUpdate(portfolio)">
+                  Mis à jour
+          </button>
+  </article>
+</div>

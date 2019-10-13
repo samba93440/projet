@@ -1,0 +1,170 @@
+<form #f="ngForm" (submit)="onSubmitNewPortfolio($event,f)" >
+  <!--titre-->
+    <div class="form-group">
+        <label for="titre"><strong>Titre:</strong></label>
+        <input
+            type="text"
+            name="titre"
+            id="titre"
+            class="form-control"
+            ngModel
+            #titre="ngModel"
+            minlength="5"
+            maxlength="20"
+            required>
+
+        <div class="alert alert-danger" *ngIf="titre.touched && !titre.valid">
+            <div *ngIf="titre.errors.required">le champ titre est vide</div>
+            <div *ngIf="titre.errors.minlength">5 caratères minimum</div>
+            <div *ngIf="titre.errors.maxlength">20 caratères maximum</div>
+        </div>
+    </div>
+    <!--Contenu-->
+    <div class="form-group">
+        <label for="contenu"><strong>Contenu:</strong></label>
+        <textarea
+            type="text"
+            name="contenu"
+            id="contenu"
+            rows="10"
+            class="form-control"
+            ngModel
+            #contenu="ngModel"
+            minlength="5"
+            maxlength="500"
+            required
+            ></textarea>
+        <div class="alert alert-danger" *ngIf="contenu.touched && !contenu.valid">
+            <div *ngIf="contenu.errors.required">le champ est vide !</div>
+            <div *ngIf="contenu.errors.minlength">5 caratères minimum</div>
+            <div *ngIf="contenu.errors.maxlength">500 caratères maximum</div>
+        </div>
+    </div>
+    <!--categorie-->
+    <div class="row-fluid">
+      <label for= "categories"><strong>Catégorie:</strong></label><br>
+      <select
+      class="selectpicker" data-show-subtext="true" data-live-search="true"
+        name="categories"
+        ngModel
+        multiple title ="Choisissez vos genres"
+        #categories="ngModel"
+        required>
+        <option data-live-search="Pop">Pop</option>
+        <option data-live-search="Rock">Rock</option>
+        <option data-live-search="Rap">Rap</option>
+        <option data-live-search="R&B">R&B</option>
+        <option data-live-search="Variété francaise"> Variété francaise</option>
+        <option data-live-search="Classique">Classique</option>
+        <option data-live-search="Dance & EDM">Dance & EDM</option>
+        <option data-live-search="Jazz">Jazz</option>
+        <option data-live-search="Electro">Electro</option>
+        <option data-live-search="Latino">Latino</option>
+        <option data-live-search="Ambiances">Ambiances</option>
+      </select>
+    </div>
+
+    <!--nom auteur :-->
+  <div class="form-group">
+    <label ><strong> Nom Auteur:</strong></label>
+    <input
+      type="text"
+      class="form-control"
+      id="identity"
+      name="nomAuteur"
+      ngModel
+      #nomAuteur ="ngModel"
+      placeholder="Entrez votre nom"
+      minlength="2"
+      maxlength="20"
+      required>
+    <small id="emailHelp" class="form-text text-muted">.</small>
+    <div class="alert alert-danger" *ngIf="nomAuteur.touched && !nomAuteur.valid">
+      <div *ngIf="nomAuteur.errors.required">le champ est vide !</div>
+      <div *ngIf="nomAuteur.errors.minlength">2 caratères minimum</div>
+      <div *ngIf="nomAuteur.errors.maxlength">20 caratères maximum</div>
+  </div>
+</div>
+
+    <!--email auteur :-->
+    <div class="form-group">
+    <label for="exampleInputEmail1"><strong> Email Auteur:</strong></label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      name="emailAuteur"
+      ngModel
+      #emailAuteur="ngModel"
+      minlength="5"
+      maxlength="40"
+      placeholder="Entrez votre email"
+      required>
+    <small id="emailHelp" class="form-text text-muted">
+        Nous ne partagerons jamais votre email avec quelqu'un d'autre.</small>
+          <div class="alert alert-danger" *ngIf="emailAuteur.touched && !emailAuteur.valid">
+          <div *ngIf="emailAuteur.errors.required">le champ est vide !</div>
+          <div *ngIf="emailAuteur.errors.minlength">5 caratères minimum</div>
+          <div *ngIf="emailAuteur.errors.maxlength">40 caratères maximum</div>
+      </div>
+  </div>
+
+    <!--date-->
+    <div><strong>Date de création:</strong></div>
+    <input
+      type="date"
+      name="dateCreation"
+      value="CurrentTime"
+      ngModel
+      #dateCreation="ngModel"
+      required>
+
+    <!--is public-->
+    <div>est Publié:
+    <div class="form-check form-check-inline">
+      <input class="form-check-input"
+       type="radio"
+       name="isPublic"
+       id="exampleRadios1"
+       value="true"
+       ngModel
+       #isPublic="ngModel"
+       checked
+       required>
+      <label class="form-check-label" >
+        Oui
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="isPublic"
+        id="exampleRadios2"
+        value= "false"
+        ngModel
+        #isPublic="ngModel">
+      <label class="form-check-label" >
+        Non
+      </label>
+    </div>
+  </div>
+    <!--boutton creer-->
+    <div class="form-group">
+        <input
+            type="submit"
+            value="Créer"
+            class="btn btn-primary"
+            [disabled]="!f.valid"
+            >
+    </div>
+
+
+
+<div class="alert alert-success" *ngIf="isOk">
+    Nouveau portfolio créé !!!
+</div>
+</form>
+
+

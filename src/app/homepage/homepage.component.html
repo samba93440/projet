@@ -1,0 +1,18 @@
+
+<div id="img">
+  <article id="border"*ngFor="let article of articles">
+      <h2>{{ article.titre }} {{ article.id }}</h2>
+      <figure>
+          <a [routerLink]="['/article', article.id]">
+          </a>
+      </figure>
+      <p><strong> Auteur:</strong> {{ article.nomAuteur }} <strong> email:</strong> {{ article.emailAuteur }} </p>
+      <p><strong> Date de création: </strong>{{ article.dateCreation }}</p>
+      <p><strong>Description</strong> {{ article.contenu }}</p>
+      <p><a [routerLink]="['/portfolio', article._id]">Lire la suite</a></p>
+      <p>{{ article.categories }}</p>
+  </article>
+</div>
+<hr>
+
+

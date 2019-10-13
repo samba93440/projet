@@ -1,0 +1,154 @@
+<form #f="ngForm" (submit)="onSubmitNewUser($event,f)" >
+        <!--nom-->
+          <div class="form-group">
+              <label for="nom"><strong>nom:</strong></label>
+              <input
+                  type="text"
+                  name="nom"
+                  id="nom"
+                  class="form-control"
+                  ngModel
+                  #nom="ngModel"
+                  minlength="2"
+                  maxlength="27"
+                  required>
+      
+              <div class="alert alert-danger" *ngIf="nom.touched && !nom.valid">
+                  <div *ngIf="nom.errors.required">le champ nom est vide</div>
+                  <div *ngIf="nom.errors.minlength">2 caratères minimum</div>
+                  <div *ngIf="nom.errors.maxlength">27 caratères maximum</div>
+              </div>
+          </div>
+          <!--prénom-->
+          <div class="form-group">
+              <label for="prenom"><strong>prenom:</strong></label>
+              <textarea
+                  type="text"
+                  name="prenom"
+                  id="prenom"
+                  class="form-control"
+                  ngModel
+                  #prenom="ngModel"
+                  minlength="2"
+                  maxlength="27"
+                  required
+                  ></textarea>
+              <div class="alert alert-danger" *ngIf="prenom.touched && !prenom.valid">
+                  <div *ngIf="prenom.errors.required">le champ est vide !</div>
+                  <div *ngIf="prenom.errors.minlength">2 caratères minimum</div>
+                  <div *ngIf="prenom.errors.maxlength">27 caratères maximum</div>
+              </div>
+          </div>
+
+          <!--email :-->
+          <div class="form-group">
+                <label for="exampleInputEmail1"><strong> email:</strong></label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  name="email"
+                  ngModel
+                  #email="ngModel"
+                  minlength="5"
+                  maxlength="40"
+                  placeholder="Entrez votre email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  required>
+                <small id="emailHelp" class="form-text text-muted">
+                    Nous ne partagerons jamais votre email avec quelqu'un d'autre.</small>
+                      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                      <div *ngIf="email.errors.required">le champ est vide !</div>
+                      <div *ngIf="email.errors.minlength">5 caratères minimum</div>
+                      <div *ngIf="email.errors.maxlength">40 caratères maximum</div>
+                  </div>
+              </div>
+      
+          <!--password :-->
+        <div class="form-group">
+          <label for="password"><strong> Password(8 caractères requis):</strong></label>
+          <input
+            type="password"
+            class="form-control"
+            id="identity"
+            name="password"
+            ngModel
+            #password ="ngModel"
+            placeholder="entrez mot de passe"
+            minlength="8"
+            maxlength="12"
+
+            required>
+          <small id="emailHelp" class="form-text text-muted">.</small>
+          <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+            <div *ngIf="password.errors.required">le champ est vide !</div>
+            <div *ngIf="password.errors.minlength">8 caratères minimum</div>
+            <div *ngIf="password.errors.maxlength">12 caratères maximum</div>
+        </div>
+      </div>
+      
+
+      <!--role-->
+      <div class="row-fluid">
+            <label for= "categories"><strong>Catégorie:</strong></label><br>
+            <select
+            class="selectpicker" data-show-subtext="true" data-live-search="true"
+              name="role"
+              ngModel
+              multiple title ="Choisissez votre role"
+              #role="ngModel"
+              required>
+              <option data-live-search="admin">Admin</option>
+              <option data-live-search="moderateur">Modérateur</option>
+              <option data-live-search="redacteur">Rédacteur</option>
+            </select>
+          </div>
+      
+          <!--is Online-->
+          <div>
+          <div class="form-check form-check-inline">
+              <label for="isOnline">Est en ligne:</label>
+            <input class="form-check-input"
+             type="radio"
+             name="isOnline"
+             id="exampleRadios1"
+             value="true"
+             ngModel
+             #isOnline="ngModel"
+             checked
+             required>
+            <label class="form-check-label" >
+              oui
+            </label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="isOnline"
+              id="exampleRadios2"
+              value= "false"
+              ngModel
+              #isOnline="ngModel">
+            <label class="form-check-label" >
+              non
+            </label>
+          </div>
+        </div>
+          <!--boutton creer-->
+          <div class="form-group">
+              <input
+                  type="submit"
+                  value="Créer"
+                  class="btn btn-primary"
+                  [disabled]="!f.valid"
+                  >
+          </div>
+      
+      
+      
+      <div class="alert alert-success" *ngIf="isOk">
+          Nouvel utilisateur créé !!!
+      </div>
+      </form>

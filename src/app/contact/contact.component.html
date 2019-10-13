@@ -1,0 +1,50 @@
+<form #f="ngForm" (submit)="onFrmSumbmit(f)">
+    <div class="form-group">
+      <label for="nomAuteur">Nom auteur :</label>
+      <input type="text" 
+        class="form-control" 
+        id="nameAuthor" 
+        name="nomAuteur" 
+        ngModel 
+        #nomAuteur="ngModel" 
+        required 
+        minlength="2" 
+        maxlength="27" 
+        >
+        <div class="alert alert-danger" *ngIf="nomAuteur.touched && !nomAuteur.valid">
+          <div *ngIf="nomAuteur.errors.required">Nom requis</div>
+          <div *ngIf="nomAuteur.errors.minlength">2 caractères minimum</div>
+          <div *ngIf="nomAuteur.errors.maxlength">27 caractères maximum</div>
+        </div>
+    </div>
+
+    <!--date-->
+    <div class="--date--">
+        <label><strong>Date de création :</strong></label>
+        <input
+            type="date"
+            name="dateCreation"
+            value="CurrentTime"
+            ngModel
+            #dateCreation="ngModel"
+            required>
+    </div>
+    <div class="form-group">
+      <label for="contenu">Commentaire :</label>
+      <textarea 
+        class="form-control"
+        id="commentaire"
+        name="contenu" 
+        #contenu="ngModel"
+        ngModel
+        required 
+        minlength="10" 
+        maxlength="500"
+        ></textarea>
+      <div class="alert alert-danger" *ngIf="contenu.touched && !contenu.valid">
+        <div *ngIf="contenu.errors.required">Commentaire requis</div>
+        <div *ngIf="contenu.errors.minlength">10 caractères minimum</div>
+        <div *ngIf="contenu.errors.maxlength">500 caractères maximum</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!f.valid">Submit</button>
